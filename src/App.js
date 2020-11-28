@@ -17,6 +17,21 @@ function App() {
     }
   };
 
+  const newItem = () => {
+    if (item.trim() !== "") {
+      const newItem = {
+        id: uuidv4(),
+        item: item,
+        color: randomColor({ luminosity: "light" }),
+        defaultPos: { x: 100, y: 0 },
+      };
+      setItems((items) => [...items, newItem]);
+      setItem("");
+    } else {
+      alert("Enter an item");
+      setItem("");
+    }
+  };
   return (
     <div className="App">
       <input
