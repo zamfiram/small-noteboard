@@ -32,6 +32,10 @@ function App() {
       setItem("");
     }
   };
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
   return (
     <div className="App">
       <input
