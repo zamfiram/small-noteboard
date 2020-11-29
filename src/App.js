@@ -6,9 +6,9 @@ let randomColor = require("randomcolor");
 
 function App() {
   const [item, setItem] = useState("");
-  const [items, setItems] = useState([]);
-
-  JSON.parse(localStorage.getItem("items")) || [];
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("items")) || []
+  );
 
   const keyPress = (event) => {
     let code = event.keyCode || event.which;
@@ -36,6 +36,16 @@ function App() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
+  const updatePos = (data, index) => {
+    let newArr = [...items];
+    newArr[index].defaultPos = { x: data.x, y: data.y };
+    setItems(newArr);
+  };
+
+  const deleteNote = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="App">
       <input
@@ -45,6 +55,24 @@ function App() {
         onKeyPress={(e) => keyPress(e)}
       />
       <button onClick={newItem}>ENTER</button>
+      {items.map((item, index) => {
+        return (
+          <Draggable
+            key={item.id}
+            defaultPosition={item.defaultPos}
+            onStop={(e, data) => {
+              updatePos(data, index);
+            }}
+          >
+            <div style={{ backgroundColor: item.color }} className="box">
+              {`${item.item}`}
+              <button id="delete" onClick={(e) => deleteNote(item.id)}>
+                X
+              </button>
+            </div>
+          </Draggable>
+        );
+      })}
     </div>
   );
 }
