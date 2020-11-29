@@ -47,14 +47,45 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <input
-        value={item}
-        onChange={(e) => setItem(e.target.value)}
-        placeholder="Enter your note here"
-        onKeyPress={(e) => keyPress(e)}
-      />
-      <button onClick={newItem}>ENTER</button>
+    <div>
+      <div>
+        <input
+          value={item}
+          onChange={(e) => setItem(e.target.value)}
+          placeholder="Type your note here..."
+          onKeyPress={(e) => keyPress(e)}
+          required
+          style={{
+            width: "70%",
+            height: "5vh",
+            maxWidth: "80%",
+            margin: "20px auto 25px auto",
+            color: "white",
+            fontFamily: "Oxygen, sans-serif",
+            fontSize: "1.5rem",
+            textOverflow: "ellipsis",
+            backgroundColor: "transparent",
+            boxShadow: "0.2px solid rgba(226, 159, 120, 0.06)",
+          }}
+        />
+        <button
+          style={{
+            padding: "7px 10px",
+            backgroundColor: "#d17191",
+            color: "white",
+            fontSize: "1.6em",
+            cursor: "pointer",
+            boxShadow: "0.2px solid rgba(226, 159, 120, 0.06)",
+            WebkitTransition: "all 300ms ease",
+            transition: "all 300ms ease",
+            fontFamily: "Fira Sans, sans-serif",
+          }}
+          onClick={newItem}
+        >
+          ENTER
+        </button>{" "}
+      </div>
+
       {items.map((item, index) => {
         return (
           <Draggable
@@ -64,9 +95,37 @@ function App() {
               updatePos(data, index);
             }}
           >
-            <div style={{ backgroundColor: item.color }} className="box">
+            <div
+              style={{
+                fontFamily: "Fira Sans, sans-serif",
+                fontSize: "1em",
+                position: "absolute",
+                cursor: "move",
+                color: "black",
+                backgroundColor: "white",
+                maxWidth: "215px",
+                overflowWrap: "break-word",
+                borderRadius: "5px",
+                padding: "1em",
+                margin: "auto",
+                userSelect: "none",
+                backgroundColor: item.color,
+                opacity: "0.7"
+              }}
+            >
               {`${item.item}`}
-              <button id="delete" onClick={(e) => deleteNote(item.id)}>
+              <button
+                id="delete"
+                onClick={(e) => deleteNote(item.id)}
+                style={{
+                  fontSize: "0.7em",
+                  position: "fixed",
+                  top: "0",
+                  right: "0",
+                  backgroundColor: "transparent",
+                  border: "none",
+                }}
+              >
                 X
               </button>
             </div>
