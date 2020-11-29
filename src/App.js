@@ -60,11 +60,11 @@ function App() {
             height: "5vh",
             maxWidth: "80%",
             margin: "20px auto 25px auto",
-            color: "white",
+            color: "#09193A",
             fontFamily: "Oxygen, sans-serif",
             fontSize: "1.5rem",
             textOverflow: "ellipsis",
-            backgroundColor: "transparent",
+            backgroundColor: "rgba(245, 206, 201, 0.5)",
             boxShadow: "0.2px solid rgba(226, 159, 120, 0.06)",
           }}
         />
